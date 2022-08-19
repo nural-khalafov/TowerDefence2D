@@ -21,14 +21,20 @@ public class CoordinateHandler : MonoBehaviour
         if (!Application.isPlaying)
         {
             DisplayCoordinates();
+            UpdateObjectName();
         }
     }
 
     private void DisplayCoordinates() 
     {
-        _coordinates.x = Mathf.RoundToInt(transform.position.x / 2);
-        _coordinates.y = Mathf.RoundToInt(transform.position.y / 2);
+        _coordinates.x = Mathf.RoundToInt(transform.position.x / 2 + 0.5f);
+        _coordinates.y = Mathf.RoundToInt(transform.position.y / 2 + 0.5f);
 
         _label.text = $"{_coordinates.x}, {_coordinates.y}";
+    }
+
+    private void UpdateObjectName() 
+    {
+        transform.name = "Tile: " + $"{_coordinates.ToString()}";
     }
 }
