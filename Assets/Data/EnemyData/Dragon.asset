@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Dragon
   m_EditorClassIdentifier: 
   _healthAmount: 150
-  _damage: 50
-  _speed: 3
+  _damage: 40
+  _speed: 2.5

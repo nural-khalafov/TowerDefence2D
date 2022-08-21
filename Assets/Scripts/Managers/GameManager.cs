@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,14 +28,12 @@ public class GameManager : MonoBehaviour
     public TowerSO MagicTower;
     public TowerSO Catapult;
 
-    [Header("Enemy SOs")]
-    public EnemySO Snark;
-    public EnemySO Zerg;
-    public EnemySO GiantInsect;
-    public EnemySO Dragon;
-
     [Header("Level Waypoints")]
     public List<Waypoint> _firstPath = new List<Waypoint>();
+
+    [Header("EndGame Options")]
+    [SerializeField] private GameObject _endGameCanvas;
+    [SerializeField] private GameObject _guiCanvas;
 
     private Vector2 worldPosition;
 
@@ -54,7 +53,10 @@ public class GameManager : MonoBehaviour
             {
                 _durabilityAmount = 0;
 
-                Time.timeScale = 0;
+                _endGameCanvas.gameObject.SetActive(true);
+                _guiCanvas.gameObject.SetActive(false);
+
+                Invoke("PauseTime", 0.5f);
             }
         }
     }
@@ -97,13 +99,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        EnemySpawner.Instance.SpawnEnemies();
     }
 
     private void Update()
     {
         _durabilityAmountText.text = Convert.ToString(DurabilityAmount);
         _goldAmountText.text = Convert.ToString(GoldAmount);
+        _wavesAmountText.text = EnemySpawner.Instance.CurrentWave + "/" + EnemySpawner.Instance.SpawnWaves;
 
         if (!Touchscreen.current.primaryTouch.press.isPressed)
         {
@@ -155,6 +157,17 @@ public class GameManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void RestartLevel() 
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
+    }
+
+    private void PauseTime() 
+    {
+        Time.timeScale = 0f;
     }
 
 

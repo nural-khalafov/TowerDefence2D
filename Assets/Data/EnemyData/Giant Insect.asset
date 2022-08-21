@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Giant Insect
   m_EditorClassIdentifier: 
   _healthAmount: 100
-  _damage: 30
+  _damage: 25
   _speed: 2

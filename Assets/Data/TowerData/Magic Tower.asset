@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Magic Tower
   m_EditorClassIdentifier: 
   Damage: 50
-  Range: 2
+  Range: 7
   ShootInterval: 1
   BuildPrice: 35000

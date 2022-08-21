@@ -8,6 +8,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2703495821831543313, guid: 9aecd4f9929dd1846b12944e33d67364, type: 3}
+      propertyPath: _maxReward
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703495821831543313, guid: 9aecd4f9929dd1846b12944e33d67364, type: 3}
+      propertyPath: _minReward
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703495821831543313, guid: 9aecd4f9929dd1846b12944e33d67364, type: 3}
       propertyPath: m_enemyType
       value: 
       objectReference: {fileID: 11400000, guid: ada94699f3bad314d905e55e38c20364, type: 2}

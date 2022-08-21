@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("EnemyOptions")]
     [SerializeField] private int m_health;
     [SerializeField] private int m_damage;
     [SerializeField] private float m_speed;
+    [SerializeField] private int _minReward; 
+    [SerializeField] private int _maxReward; 
 
     [SerializeField] private EnemySO m_enemyType;
 
@@ -30,13 +33,13 @@ public class Enemy : MonoBehaviour
         gameObject.GetComponent<EnemyHandler>()._speed = m_speed;
     }
 
-    private void OnParticleCollision(GameObject other)
-    {
-        if (other.gameObject.GetComponentInParent<Tower>()) 
-        {
-            Health -= other.gameObject.GetComponentInParent<Tower>()._towerDamage;
-        }
-    }
+    //private void OnParticleCollision(GameObject other)
+    //{
+    //    if (other.gameObject.GetComponentInParent<Tower>()) 
+    //    {
+    //        Health -= other.gameObject.GetComponentInParent<Tower>()._towerDamage;
+    //    }
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -44,6 +47,13 @@ public class Enemy : MonoBehaviour
         {
             GameManager.Instance.DurabilityAmount -= m_damage;
             Destroy(gameObject);
+        }
+
+        if(collision.gameObject.tag == "TowerProjectile") 
+        {
+            Health -= collision.gameObject.GetComponent<TowerProjectile>().ProjectileDamage;
+
+            GameManager.Instance.GoldAmount += Random.RandomRange(_minReward , _maxReward);
         }
     }
 }

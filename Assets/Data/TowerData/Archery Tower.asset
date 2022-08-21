@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Archery Tower
   m_EditorClassIdentifier: 
   Damage: 35
-  Range: 3
+  Range: 10
   ShootInterval: 2
   BuildPrice: 25000
